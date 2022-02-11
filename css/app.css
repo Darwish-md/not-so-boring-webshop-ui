@@ -1,0 +1,110 @@
+.products-container {
+    padding-top: 5%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin: auto;
+  text-align: center;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  padding: 1%;
+  margin: 2%;
+  cursor: pointer;
+  flex-basis: 25%;
+  border-radius: 10px;
+}
+
+.card:hover {
+  background-color: #ddd;
+}
+
+.price {
+  color: grey;
+  font-size: 22px;
+}
+
+.card img{
+  width: 240px;
+  height: 400px;
+}
+
+.topnav {
+  background-color: #e9e9e9;
+  position: fixed;
+  width: 100%;
+}
+
+.topnav a {
+  float: left;
+  color: black;
+  background-color: #e9e9e9;
+  text-align: center;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  padding: 14px;
+  margin: 0px;
+  font-size: 29px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+
+.topnav .search-container {
+  float: right;
+}
+
+.topnav input[type=text] {
+  padding: 6px;
+  margin-top: 15px;
+  font-size: 20px;
+  border: none;
+}
+
+.topnav .search-container button {
+  float: right;
+  padding: 8px;
+  margin: 15px;
+  margin-left: 0px;
+  background: #ddd;
+  border: none;
+  cursor: pointer;
+}
+
+  .pagination {
+    display: inline-block;
+    margin-bottom: 1.3%;
+  }
+  
+  .pagination button,a {
+    color: black;
+    background-color: #ffffff;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+    margin: 0 4px;
+    cursor: pointer;
+  }
+
+  .pagination a{
+    cursor: default;
+  }
+
+  .center {
+    text-align: center;
+  }
+    
+  .pagination button:hover {background-color: #ddd;}
+
+  .pagination a:hover{
+    background-color: #ddd;
+  }
+  .pagination button:disabled {
+    cursor: not-allowed;
+  }

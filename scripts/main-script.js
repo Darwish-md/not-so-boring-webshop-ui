@@ -8,15 +8,16 @@ if (document.readyState == 'loading') {
 
 } else {
 
+    //generating the list of products
     const products = await generateRandomProducts();
+
     ready(products);
 
 }
 
 async function ready(products) {
 
-
-
+    // instantiating homepage
     let page = 1;
 
     let currentProducts = paginate(page, products);
@@ -25,6 +26,7 @@ async function ready(products) {
 
     createDOM(formattedProductList);
 
+    //handling previous button click
     const prevBtn = document.getElementById("prevbtn");
 
     prevBtn.addEventListener("click", () => {
@@ -46,6 +48,7 @@ async function ready(products) {
 
     });
 
+    //handling next button click
     const nextBtn = document.getElementById("nextbtn");
 
     nextBtn.addEventListener("click", () => {
@@ -67,12 +70,16 @@ async function ready(products) {
 
     });
 
+    //handling search
     const searchBtn = document.getElementById("searchbtn");
 
     searchBtn.addEventListener("click", () => {
+        
         searchProductsByName(products);
+
     });
 
+    //navigate back to home page
     const home = document.getElementById("home");
 
     home.addEventListener("click", () => {
@@ -86,22 +93,22 @@ async function ready(products) {
         let formattedProductList = formatProductList(currentProducts);
 
         createDOM(formattedProductList);
-        
+
     })
 
-    console.log(determineTopProduct(formattedProductList));
-
+    //get the top product according to rating
     const topProductBtn = document.getElementById("top-product");
 
     topProductBtn.addEventListener("click", () => {
+        
+        let formattedProductList = formatProductList(products);
 
-        let topProduct = determineTopProduct();
+        let topProduct = determineTopProduct(formattedProductList);
 
-        let formattedProduct = formatProductList(topProduct);
-
-        createDOM(formattedProduct);
+        createDOM(topProduct);
 
     });
+    
 }
 
 
@@ -114,11 +121,11 @@ function formatProductList(products) {
         const productDetails = product.split("-");
 
         var productObject = {
-            name: `${productDetails[0]}`,
-            description: `${productDetails[1]}`,
+            name: productDetails[0],
+            description: productDetails[1],
             price: productDetails[2],
             rating: productDetails[3],
-            image: `${productDetails[4]}`
+            image: productDetails[4]
         }
 
         formattedProductList.push(productObject);
@@ -145,16 +152,6 @@ function paginate(page, products) {
     return currentProducts;
 }
 
-
-/*const determineTopProduct = (productList) => {
-
-    return productList.reduce(
-        (acc, val) => {
-            return Math.max(acc.rating, val.rating);
-            return acc.rating > val.rating ? acc.rating : val.rating;
-        }, productList[0]);
-}*/
-
 const searchProductsByName = (products) => {
 
     const searchkeyword = document.querySelector("input").value;
@@ -174,14 +171,18 @@ const searchProductsByName = (products) => {
 
 }
 
+
 const determineTopProduct = (productList) => {
-    return productList.reduce(
+
+    const topProduct = productList.reduce(
+
         (acc, val) => {
-            return Math.max(parseFloat(acc.rating), parseFloat(val.rating));
-            //return parseFloat(acc.rating) > parseFloat(val.rating) ? parseFloat(acc.rating) : parseFloat(val.rating);
-        }, productList[0]);
+
+            return parseFloat(acc.rating) > parseFloat(val.rating) ? acc : val;
+
+        }, productList[0].rating);
+    
+    return [topProduct];
 }
-
-
 
 

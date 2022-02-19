@@ -86,7 +86,10 @@ async function ready(products) {
 
         scroll();
 
-        let page = 1;
+        page = 1;
+
+        prevBtn.disabled = true;
+        nextBtn.disabled = false;
 
         let currentProducts = paginate(page, products);
 
